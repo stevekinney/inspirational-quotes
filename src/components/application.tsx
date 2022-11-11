@@ -30,7 +30,7 @@ const Application = () => {
   }, []);
 
   return (
-    <main className="w-full max-w-2xl mx-auto">
+    <main className="w-full max-w-2xl mx-auto mb-8">
       <Quotes>
         {quotes.map((quote) => (
           <InspirationalQuote
