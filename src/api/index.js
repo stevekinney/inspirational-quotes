@@ -24,8 +24,8 @@ export function makeServer({ environment = 'test' }) {
       this.namespace = 'api';
 
       this.get('quotes', (schema, request) => {
-        const limit = Number(request.params.limit || 10);
-        const offset = Number(request.params.offset || 0);
+        const limit = Number(request.queryParams.limit || 10);
+        const offset = Number(request.queryParams.offset || 0);
         return schema.quotes.all().slice(offset, limit);
       });
       this.get('quotes/random', (schema) => {
