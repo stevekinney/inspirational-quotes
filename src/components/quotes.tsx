@@ -1,12 +1,23 @@
-import { useState } from 'react';
+import { ChangeEventHandler, FormEventHandler, PropsWithChildren } from 'react';
 
-const Quotes = ({ children, count, onSubmit, onChange }: any) => {
+type QuotesProps = {
+  count: number;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  onSubmit: FormEventHandler<HTMLFormElement>;
+};
+
+const Quotes = ({
+  children,
+  count,
+  onSubmit,
+  onChange,
+}: PropsWithChildren<QuotesProps>) => {
   return (
     <section>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          onChange(e);
+          onSubmit(e);
         }}
         className="my-8"
       >

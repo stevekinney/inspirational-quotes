@@ -12,15 +12,21 @@ const Application = () => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [count, setCount] = useState(10);
 
-  useEffect(() => {
-    fetch('/api/quotes?limit=YOUR_COUNT_GOES_HERE')
+  const fetchPosts = (count: number) => {
+    fetch(`/api/quotes?limit=${count}`)
       .then((res) => res.json())
       .then(({ quotes }) => setQuotes(quotes));
-  }, []);
+  };
+
+  useEffect(() => fetchPosts(count), []);
 
   return (
-    <main className="w-full max-w-2xl mx-auto mb-8">
-      <Quotes>
+    <main className="w-full max-w-2xl mx-auto">
+      <Quotes
+        count={count}
+        onChange={(e) => setCount(+e.target.value)}
+        onSubmit={() => fetchPosts(count)}
+      >
         {quotes.map((quote) => (
           <InspirationalQuote
             key={quote.id}
