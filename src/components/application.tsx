@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import InspirationalQuote from './quote';
-import LoadQuotes from './quotes';
+import Quotes from './quotes';
 
 export type Quote = {
   id: number;
@@ -31,7 +31,7 @@ const Application = () => {
 
   return (
     <main className="w-full max-w-2xl mx-auto">
-      <LoadQuotes>
+      <Quotes>
         {quotes.map((quote) => (
           <InspirationalQuote
             key={quote.id}
@@ -39,7 +39,7 @@ const Application = () => {
             source={quote.source}
           />
         ))}
-      </LoadQuotes>
+      </Quotes>
     </main>
   );
 };
