@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const LoadQuotes = ({ children, onSubmit }: any) => {
+const Quotes = ({ children, onSubmit }: any) => {
   const [count, setCount] = useState(10);
 
   return (
@@ -27,4 +27,4 @@ const LoadQuotes = ({ children, onSubmit }: any) => {
   );
 };
 
-export default LoadQuotes;
+export default Quotes;
