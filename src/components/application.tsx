@@ -24,7 +24,7 @@ const Application = () => {
   ];
 
   useEffect(() => {
-    fetch('/api/quotes')
+    fetch('/api/quotes?limit=YOUR_COUNT_GOES_HERE')
       .then((res) => res.json())
       .then(({ quotes }) => console.log(quotes));
   }, []);
