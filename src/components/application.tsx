@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import InspirationalQuote from './quote';
 import Quotes from './quotes';
 
@@ -9,19 +9,7 @@ export type Quote = {
 };
 
 const Application = () => {
-  const quotes: any[] = [
-    {
-      id: 1,
-      content:
-        "Your time is limited, so don't waste it living someone else's life.",
-      source: 'Steve Jobs',
-    },
-    {
-      id: 2,
-      content: 'The way to get started is to quit talking and begin doing.',
-      source: 'Walt Disney',
-    },
-  ];
+  const [quotes, setQuotes] = useState<Quote[]>([]);
 
   useEffect(() => {
     fetch('/api/quotes?limit=YOUR_COUNT_GOES_HERE')
