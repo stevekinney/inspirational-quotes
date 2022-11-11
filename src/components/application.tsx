@@ -21,7 +21,7 @@ const Application = () => {
   useEffect(() => fetchPosts(count), []);
 
   return (
-    <main className="w-full max-w-2xl mx-auto">
+    <main className="w-full max-w-2xl pb-16 mx-auto">
       <Quotes
         count={count}
         onChange={(e) => setCount(+e.target.value)}
