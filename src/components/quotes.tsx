@@ -13,13 +13,12 @@ const Quotes = ({
   onChange,
 }: PropsWithChildren<QuotesProps>) => {
   return (
-    <section>
+    <section className="flex flex-col gap-8">
       <form
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit(e);
         }}
-        className="my-8"
       >
         <label htmlFor="number-of-quotes-to-load" className="block">
           Number of Quotes to Load
