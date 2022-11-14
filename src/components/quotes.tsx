@@ -37,7 +37,7 @@ const Quotes = ({
           <button type="submit">Load Quotes</button>
         </div>
       </form>
-      <div className="grid grid-cols-2 gap-4">{children}</div>
+      {children}
     </section>
   );
 };

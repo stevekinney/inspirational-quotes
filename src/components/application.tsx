@@ -29,13 +29,15 @@ const Application = () => {
         onChange={(e) => setCount(parseInt(e.target.value))}
         onSubmit={() => fetchPosts(count)}
       >
-        {quotes.map((quote) => (
-          <InspirationalQuote
-            key={quote.id}
-            content={quote.content}
-            source={quote.source}
-          />
-        ))}
+        <div className="grid grid-cols-2 gap-4">
+          {quotes.map((quote) => (
+            <InspirationalQuote
+              key={quote.id}
+              content={quote.content}
+              source={quote.source}
+            />
+          ))}
+        </div>
       </Quotes>
     </main>
   );
