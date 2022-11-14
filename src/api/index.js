@@ -3,7 +3,10 @@ import { createServer, Model, RestSerializer } from 'miragejs';
 
 import quotes from './quotes.json';
 
-const ApplicationSerializer = RestSerializer.extend({});
+const ApplicationSerializer = RestSerializer.extend({
+  root: false,
+  embed: true,
+});
 
 export function makeServer({ environment = 'test' }) {
   return createServer({
