@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import QuoteFilter from './filters';
 import InspirationalQuote from './quote';
 import Quotes from './quotes';
 
@@ -27,6 +28,7 @@ const Application = () => {
         onChange={(e) => setCount(parseInt(e.target.value))}
         onSubmit={() => fetchPosts(count).then(setQuotes)}
       >
+        <QuoteFilter />
         <div className="grid grid-cols-2 gap-4">
           {quotes.map((quote) => (
             <InspirationalQuote
