@@ -20,14 +20,12 @@ const Application = () => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [count, setCount] = useState(10);
 
-  fetchPosts(count).then(setQuotes);
-
   return (
     <main className="w-full max-w-2xl pb-16 mx-auto">
       <Quotes
         count={count}
         onChange={(e) => setCount(parseInt(e.target.value))}
-        onSubmit={() => fetchPosts(count)}
+        onSubmit={() => fetchPosts(count).then(setQuotes)}
       >
         <div className="grid grid-cols-2 gap-4">
           {quotes.map((quote) => (
