@@ -1,9 +1,23 @@
+import type {
+  ChangeEvent,
+  ChangeEventHandler,
+  Dispatch,
+  SetStateAction,
+} from 'react';
+
 type QuoteFilterProps = {
   filters: QuoteFilters;
-  setFilters: any; // Change me!
+  setFilters: Dispatch<SetStateAction<QuoteFilters>>;
 };
 
 const QuoteFilter = ({ filters, setFilters }: QuoteFilterProps) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setFilters((filters) => ({
+      ...filters,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
   return (
     <section className="flex gap-4">
       <label htmlFor="content-filter">
@@ -12,13 +26,7 @@ const QuoteFilter = ({ filters, setFilters }: QuoteFilterProps) => {
           id="content-filter"
           name="content"
           value={filters.content}
-          onChange={(e) =>
-            setFilters((filters: any /* Ugh. */) => ({
-              ...filters,
-              [e.target.name]: e.target.value,
-            }))
-          }
-          // 👆 This feels like duplicate code.
+          onChange={handleChange}
           placeholder="Filter by quote content"
         />
       </label>
@@ -29,7 +37,7 @@ const QuoteFilter = ({ filters, setFilters }: QuoteFilterProps) => {
           name="source"
           value={filters.source}
           onChange={(e) =>
-            setFilters((filters: any /* Ugh. */) => ({
+            setFilters((filters) => ({
               ...filters,
               [e.target.name]: e.target.value,
             }))
