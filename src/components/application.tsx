@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import filterQuotes from '../lib/filter-quotes';
 import QuoteFilter from './filters';
 import InspirationalQuote from './quote';
 import Quotes from './quotes';
@@ -20,6 +21,12 @@ const fetchPosts = async (count: number) => {
 const Application = () => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [count, setCount] = useState(10);
+  const [filters, setFilters] = useState({ content: '', source: '' });
+
+  const visibleQuotes = useMemo(
+    () => filterQuotes(quotes, filters),
+    [quotes, filters],
+  );
 
   return (
     <main className="w-full max-w-2xl pb-16 mx-auto">
@@ -28,9 +35,9 @@ const Application = () => {
         onChange={(e) => setCount(parseInt(e.target.value))}
         onSubmit={() => fetchPosts(count).then(setQuotes)}
       >
-        <QuoteFilter />
+        <QuoteFilter filters={filters} setFilters={setFilters} />
         <div className="grid grid-cols-2 gap-4">
-          {quotes.map((quote) => (
+          {visibleQuotes.map((quote) => (
             <InspirationalQuote
               key={quote.id}
               content={quote.content}
