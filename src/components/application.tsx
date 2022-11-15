@@ -17,11 +17,6 @@ export const fetchQuotes = async (count: number) => {
 const Application = () => {
   const [quotes, setQuotes] = useState([]);
 
-  useEffect(() => {
-    fetchQuotes(10).then(setQuotes);
-  }, []);
-
-  if (!quotes.length) return <Loading />;
   return (
     <main className="w-full max-w-2xl py-16 mx-auto">
       <Quotes>
