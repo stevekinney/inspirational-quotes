@@ -20,7 +20,7 @@ export const fetchQuotes = async (count: number) => {
 };
 
 const Application = () => {
-  const [quote, setQuote] = useState();
+  const [quote, setQuote] = useState<Quote | undefined>();
 
   useEffect(() => {
     fetchRandomQuote().then(setQuote);
@@ -29,7 +29,7 @@ const Application = () => {
   if (!quote) return <Loading />;
   return (
     <main className="w-full max-w-2xl py-16 mx-auto">
-      {/* <InspirationalQuote content={quote.content} source={quote.source} /> */}
+      <InspirationalQuote content={quote.content} source={quote.source} />
       {/* <Quotes>
         <div className="grid grid-cols-2 gap-4"></div>
       </Quotes> */}
