@@ -11,8 +11,6 @@ export type Quote = {
 };
 
 const fetchPosts = async (count: number) => {
-  // We don't *need* to use a number, but this solution contains a discussion
-  // for what we do with the fact that input[type="number"] gives us strings.
   if (isNaN(count)) return [];
   const response = await fetch(`/api/quotes?limit=${count}`);
   return response.json();
@@ -22,6 +20,20 @@ const Application = () => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [count, setCount] = useState(10);
   const [filters, setFilters] = useState({ content: '', source: '' });
+
+  const [requestStatus, setrequestStatus] = useState<
+    'loading' | 'error' | 'success'
+  >('loading');
+
+  const getPosts = () => {
+    setrequestStatus('loading');
+    fetchPosts(count)
+      .then(setQuotes)
+      .then(() => {
+        setrequestStatus('success');
+      })
+      .catch(() => setrequestStatus('error'));
+  };
 
   const visibleQuotes = useMemo(
     () => filterQuotes(quotes, filters),
@@ -33,7 +45,7 @@ const Application = () => {
       <Quotes
         count={count}
         onChange={(e) => setCount(parseInt(e.target.value))}
-        onSubmit={() => fetchPosts(count).then(setQuotes)}
+        onSubmit={getPosts}
       >
         <QuoteFilter filters={filters} setFilters={setFilters} />
         <div className="grid grid-cols-2 gap-4">
