@@ -29,7 +29,7 @@ const Application = () => {
   );
 
   return (
-    <main className="w-full max-w-2xl pb-16 mx-auto">
+    <main className="w-full max-w-2xl py-16 mx-auto">
       <Quotes
         count={count}
         onChange={(e) => setCount(parseInt(e.target.value))}
